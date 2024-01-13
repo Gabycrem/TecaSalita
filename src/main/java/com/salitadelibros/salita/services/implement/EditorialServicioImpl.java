@@ -1,15 +1,16 @@
-package com.salitadelibros.salita.services;
+package com.salitadelibros.salita.services.implement;
 
 import com.salitadelibros.salita.models.Editorial;
 import com.salitadelibros.salita.repositories.EditorialRepositorio;
 import com.salitadelibros.salita.repositories.LibroRepositorio;
+import com.salitadelibros.salita.services.EditorialServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class EditorialServicioImpl implements EditorialServicio{
+public class EditorialServicioImpl implements EditorialServicio {
 
     @Autowired
     private LibroRepositorio libroRepositorio;

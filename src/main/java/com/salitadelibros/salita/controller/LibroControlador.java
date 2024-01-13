@@ -3,6 +3,7 @@ package com.salitadelibros.salita.controller;
 import com.salitadelibros.salita.dtos.*;
 import com.salitadelibros.salita.dtos.LibroDTO;
 import com.salitadelibros.salita.services.*;
+import com.salitadelibros.salita.services.implement.LibroServicioImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.salitadelibros.salita.models.*;
@@ -54,7 +55,7 @@ public class LibroControlador {
 
         List<LibroDTO> libroDTOList = libroServicio.getLibros()
                 .stream()
-                .map(libro -> new LibroDTO((com.salitadelibros.salita.models.Libro) libro))
+                .map(libro -> new LibroDTO(libro))
                 .collect(Collectors.toList());
 
         //  List<String> categorias = libroServicio.getCategorias();

@@ -1,7 +1,8 @@
-package com.salitadelibros.salita.services;
+package com.salitadelibros.salita.services.implement;
 
 import com.salitadelibros.salita.models.Categoria;
 import com.salitadelibros.salita.repositories.CategoriaRepositorio;
+import com.salitadelibros.salita.services.CategoriaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

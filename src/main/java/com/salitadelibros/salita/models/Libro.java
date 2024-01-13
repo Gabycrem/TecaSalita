@@ -11,26 +11,28 @@ import java.util.Set;
 
 @Entity
 public class Libro {
+
+    //------------------- Propiedades ---------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
     @Column(name = "Titulo", nullable = false)
     private String titulo;
     @Column(name = "fecha_de_edicion")
     private String fechaDeEdicion;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "editorial_id")
-    private Editorial editorial;
-
     @Enumerated(EnumType.STRING)
     private Genero genero;
+    private String isbn;
+
+
+    // -------------------Relaciones----------------//
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "editorial_id")
+    private Editorial editorial; //chek
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "libro", cascade = CascadeType.ALL)
     private Set<LibroCategoria> categorias = new HashSet<>();
-
-    private String isbn;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "libro", cascade = CascadeType.ALL)
     private Set<LibroIlustrador> ilustradores = new HashSet<>();
@@ -38,7 +40,7 @@ public class Libro {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "libro", cascade = CascadeType.ALL)
     private Set<LibroAutor> autores = new HashSet<>();
 
-    // Constructores
+    // ---------------------Constructores -------------------//
 
     public Libro() {
     }
@@ -60,58 +62,53 @@ public class Libro {
         }
     }
 
+    //----------------- Getters y Setters------------------//
     // getters
     // id tiene solo get
     public Long getId() {
         return id;
     }
-
     public String getTitulo() {
         return titulo;
     }
-
-    public Set<LibroAutor> getAutores() {
-        return autores;
+    public String getFechaDeEdicion() {
+        return fechaDeEdicion;
     }
-
-    public Set<LibroIlustrador> getIlustradores() {
-        return ilustradores;
+    public Genero getGenero() {
+        return genero;
+    }
+    public String getIsbn() {
+        return isbn;
     }
 
     public Editorial getEditorial() {
         return editorial;
     }
 
-    public Genero getGenero() {
-        return genero;
-    }
-
     public Set<LibroCategoria> getCategorias() {
         return categorias;
     }
 
-    public String getFechaDeEdicion() {
-        return fechaDeEdicion;
+    public Set<LibroIlustrador> getIlustradores() {
+        return ilustradores;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public Set<LibroAutor> getAutores() {
+        return autores;
     }
+
 
     //y setters
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
     public void setFechaDeEdicion(String fechaDeEdicion) {
         this.fechaDeEdicion = fechaDeEdicion;
     }
-
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
@@ -120,13 +117,12 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    //metodos de add
+    // ---------- Métodos ADD y Otros ----------------- //
 
     public void addLibroAutor(LibroAutor libroAutor) {
         libroAutor.setLibro(this);
         autores.add(libroAutor);
     }
-
 
     public void addLibroIlustrador(LibroIlustrador libroIlustrador){
         libroIlustrador.setLibro(this);
