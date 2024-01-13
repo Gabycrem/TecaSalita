@@ -116,6 +116,10 @@ public class Libro {
         this.isbn = isbn;
     }
 
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+    }
+
     //metodos de add
 
     public void addLibroAutor(LibroAutor libroAutor) {
@@ -133,8 +137,8 @@ public class Libro {
         categorias.add(libroCategoria);
     }
 
-    public void addEditorial(Editorial editorial){
+    /*public void addEditorial(Editorial editorial){
         this.editorial = editorial;
         editorial.getLibros().add(this);
-    }
+    }*/
 }

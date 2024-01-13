@@ -23,14 +23,27 @@ public class SalitaApplication {
 									  IlustradorRepositorio ilustradorRepositorio,
 									  EditorialRepositorio editorialRepositorio,
 									  LibroAutorRepositorio libroAutorRepositorio,
+									  CategoriaRepositorio categoriaRepositorio,
 									  UsuarioRepositorio usuarioRepositorio){
 
 		return (args -> {
 
-			Editorial editorial= new Editorial("AZ editores");
-			Autor autor = new Autor("Dimas", "Cabrera");
-			Ilustrador ilustrador = new Ilustrador("Agustina", "Di Mauro");
-			Categoria categoria = new Categoria("Pizza");
+			Editorial editorial1= new Editorial("AZ editores");
+			editorialRepositorio.save(editorial1);
+			Autor autor1 = new Autor("Dimas", "Cabrera");
+			autorRepositorio.save(autor1);
+			Ilustrador ilustrador1 = new Ilustrador("Agustina", "Di Mauro");
+			ilustradorRepositorio.save(ilustrador1);
+			Categoria categoria1 = new Categoria("Pizza");
+			categoriaRepositorio.save(categoria1);
+			Editorial editorial2= new Editorial("Editorial Planeta");
+			editorialRepositorio.save(editorial2);
+			Autor autor2 = new Autor("J.R.R.", "Tolkien");
+			autorRepositorio.save(autor2);
+			Ilustrador ilustrador2 = new Ilustrador("Ted", "Nasmith");
+			ilustradorRepositorio.save(ilustrador2);
+			Categoria categoria2 = new Categoria("Mitos y Leyendas");
+			categoriaRepositorio.save(categoria2);
 	});
 }
 

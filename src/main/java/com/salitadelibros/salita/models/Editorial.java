@@ -21,10 +21,8 @@ public class Editorial {
     //Constructores
     public Editorial() {
     }
-
     public Editorial(String nombreEditorial) {
         this.nombreEditorial = nombreEditorial;
-
     }
 
     // getters
@@ -48,9 +46,8 @@ public class Editorial {
     }
 
     public void addLibro(Libro libro) {
-        this.libros.add(libro); // agrego libro al Set<libro>
-        libro.addEditorial(this) ;// agrego la editorial al libro
-
+        libro.setEditorial(this); // agrego libro al Set<libro>
+        libros.add(libro);// agrego la editorial al libro
     }
 
 }
