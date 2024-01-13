@@ -1,5 +1,9 @@
 package com.salitadelibros.salita.dtos;
 
+import com.salitadelibros.salita.models.Autor;
+import com.salitadelibros.salita.models.LibroAutor;
+
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -7,21 +11,21 @@ public class AutorDTO {
     private Long id;
     private String nombreAutor;
     private String apellidoAutor;
-    private Set<LibroAutorDTO> libros;
+    private List<LibroAutorDTO> libros;
 
     public AutorDTO() {
 
     }
 
     // Método constructor que acepta una instancia de AutorDTO
-    public AutorDTO(com.salitadelibros.salita.models.Autor autor) {
-        id = autor.getId();
-        nombreAutor = autor.getNombreAutor();
-        apellidoAutor = autor.getApellidoAutor();
-        libros = autor.getLibros()
+    public AutorDTO(Autor autor) {
+        this.id = autor.getId();
+        this.nombreAutor = autor.getNombreAutor();
+        this.apellidoAutor = autor.getApellidoAutor();
+        this.libros = autor.getLibroAutor()
                 .stream()
                 .map(libroAutor -> new LibroAutorDTO(libroAutor))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -36,7 +40,7 @@ public class AutorDTO {
         return apellidoAutor;
     }
 
-    public Set<LibroAutorDTO> getLibros() {
+    public List<LibroAutorDTO> getLibros() {
         return libros;
     }
 }

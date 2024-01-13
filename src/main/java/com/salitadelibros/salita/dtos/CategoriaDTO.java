@@ -2,25 +2,25 @@ package com.salitadelibros.salita.dtos;
 
 import com.salitadelibros.salita.models.Categoria;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CategoriaDTO {
     private Long id;
     private String palabraCategoria;
-    private Set<LibroCategoriaDTO> libros;
+    private List<LibroCategoriaDTO> libros;
 
     //constructores
 
-    public CategoriaDTO() {
-    }
+
     public CategoriaDTO(Categoria categoria){
-        id =  categoria.getId();
-        palabraCategoria = categoria.getPalabraCategoria();
-        libros = categoria.getLibros()
+        this.id =  categoria.getId();
+        this.palabraCategoria = categoria.getPalabraCategoria();
+        this.libros = categoria.getLibroCategoria()
                 .stream()
                 .map(libroCategoria -> new LibroCategoriaDTO(libroCategoria))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
     //getters
     public Long getId() {
@@ -31,7 +31,7 @@ public class CategoriaDTO {
         return palabraCategoria;
     }
 
-    public Set<LibroCategoriaDTO> getLibros() {
+    public List<LibroCategoriaDTO> getLibros() {
         return libros;
     }
 }

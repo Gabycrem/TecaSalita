@@ -10,16 +10,14 @@ public class EditorialDTO {
 
     private String nombreEditorial;
 
-    private Set<LibroDTO> libroDTOS;
+    private Set<LibroDTO> libros;
 
-    public EditorialDTO(){
 
-    }
 
     public EditorialDTO(Editorial editorial) {
-        id = editorial.getId();
-        nombreEditorial = editorial.getNombreEditorial();
-        libroDTOS = editorial.getLibros().stream().map(libro -> new LibroDTO(libro)).collect(Collectors.toSet());
+        this.id = editorial.getId();
+        this.nombreEditorial = editorial.getNombreEditorial();
+        this.libros = editorial.getLibros().stream().map(libro -> new LibroDTO(libro)).collect(Collectors.toSet());
 
     }
 
@@ -32,6 +30,6 @@ public class EditorialDTO {
     }
 
     public Set<LibroDTO> getLibros() {
-        return libroDTOS;
+        return libros;
     }
 }

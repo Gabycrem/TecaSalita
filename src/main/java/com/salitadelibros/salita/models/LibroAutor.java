@@ -12,19 +12,21 @@ public class LibroAutor {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "libro_id")
     private Libro libro;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "autor_id")
     private Autor autor;
 
     // Constructor
     public LibroAutor() {
     }
 
-    public LibroAutor(Libro libro, Autor autor) {
+    /*public LibroAutor(Libro libro, Autor autor) {
         this.libro = libro;
         this.autor = autor;
-    }
+    }*/
 
     // Getters
 
@@ -40,23 +42,15 @@ public class LibroAutor {
         return autor;
     }
 
-    public String getNombreAutor(){
-        return autor.getNombreAutor();
-    }
-    public String getApellidoAutor(){
-        return autor.getApellidoAutor();
-    }
     // Setters
-
     public void setLibro(Libro libro) {
-        if (libro != null) {
+        //if (libro != null) {
             this.libro = libro;
-        }
+        //}
     }
-
     public void setAutor(Autor autor) {
-        if (autor != null) {
+        //if (autor != null) {
             this.autor = autor;
-        }
+        //}
     }
 }

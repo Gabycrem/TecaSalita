@@ -6,36 +6,33 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LibroDTO {
-
     private Long id;
     private String titulo;
     private Genero genero;
-    private Set<LibroCategoriaDTO> categorias;
-    private EditorialDTO editorial;
-    private Set<LibroAutorDTO> autores;
-    private Set<LibroIlustradorDTO> ilustradores;
     private String fechaDeEdicion;
     private String isbn;
+    private Set<LibroCategoriaDTO> categorias;
+    private Editorial editorial;
+    private Set<LibroAutorDTO> autores;
+    private Set<LibroIlustradorDTO> ilustradores;
+
 
     // Constructores
 
-    public LibroDTO() {
-    }
-
-    public LibroDTO(com.salitadelibros.salita.models.Libro libro) {
-        id = libro.getId();
-        titulo = libro.getTitulo();
-        genero = libro.getGenero();
-        categorias = libro.getCategorias()
+    public LibroDTO(Libro libro) {
+        this.id = libro.getId();
+        this.titulo = libro.getTitulo();
+        this.genero = libro.getGenero();
+        this.categorias = libro.getLibroCategorias()
                 .stream()
                 .map(libroCategoria -> new LibroCategoriaDTO(libroCategoria))
                 .collect(Collectors.toSet());
-        editorial = new EditorialDTO(libro.getEditorial());
-        autores = libro.getAutores()
+        this.editorial = libro.getEditorial();
+        this.autores = libro.getLibroAutores()
                 .stream()
                 .map(libroAutor -> new LibroAutorDTO(libroAutor))
                 .collect(Collectors.toSet());
-        ilustradores = libro.getIlustradores()
+        ilustradores = libro.getLibroIlustradores()
                 .stream()
                 .map(libroIlustrador -> new LibroIlustradorDTO(libroIlustrador))
                 .collect(Collectors.toSet());
@@ -62,7 +59,7 @@ public class LibroDTO {
         return categorias;
     }
 
-    public EditorialDTO getEditorial() {
+    public Editorial getEditorial() {
         return editorial;
     }
 

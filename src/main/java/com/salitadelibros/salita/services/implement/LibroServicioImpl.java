@@ -1,5 +1,6 @@
 package com.salitadelibros.salita.services.implement;
 
+import com.salitadelibros.salita.dtos.LibroDTO;
 import com.salitadelibros.salita.models.Libro;
 import com.salitadelibros.salita.repositories.LibroRepositorio;
 import com.salitadelibros.salita.services.LibroServicio;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class LibroServicioImpl implements LibroServicio {
@@ -17,8 +21,10 @@ public class LibroServicioImpl implements LibroServicio {
     private LibroRepositorio libroRepositorio;
 
     @Override
-    public List<Libro> getLibros() {
-        return libroRepositorio.findAll();
+    public List<LibroDTO> getLibrosDTO() {
+        return libroRepositorio.findAll()
+                .stream()
+                .map(libro -> new LibroDTO(libro)).collect(toList());
     }
 
     @Override

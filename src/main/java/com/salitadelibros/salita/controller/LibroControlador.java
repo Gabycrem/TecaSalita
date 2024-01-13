@@ -53,14 +53,11 @@ public class LibroControlador {
     public Map<String, Object> getLibros() {
         Map<String, Object> response = new HashMap<>();
 
-        List<LibroDTO> libroDTOList = libroServicio.getLibros()
-                .stream()
-                .map(libro -> new LibroDTO(libro))
-                .collect(Collectors.toList());
+        List<LibroDTO> libroDTOList = libroServicio.getLibrosDTO();
 
         //  List<String> categorias = libroServicio.getCategorias();
 
-        //  response.put("libros", libroDTOList);
+        response.put("Libros: ", libroDTOList);
         //  response.put("categoriasexistentes", categorias);
 
         return response;
@@ -88,7 +85,7 @@ public class LibroControlador {
             logger.info("Iniciando asociarDatosLibro...{}", libro.getId());
             // Devolver el ID del nuevo libro
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("libro creado" + libro.getId());
+                    .body("libro"+ libro.getTitulo() + " creado" + libro.getId());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -111,7 +108,7 @@ public class LibroControlador {
 
                 if (autor != null) {
                     // Utilizar una única declaración de LibroAutor y asignar el libro y autor en su constructor
-                    LibroAutor libroAutor = new LibroAutor(libro, autor);
+                    LibroAutor libroAutor = new LibroAutor();
                     libroAutorServicio.saveOrUpdate(libroAutor);
                     logger.info("Obtenido libroAutor {}", libroAutor);
                     // Hacer algo con libroAutor si es necesario

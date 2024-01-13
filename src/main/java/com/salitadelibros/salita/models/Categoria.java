@@ -3,8 +3,9 @@ package com.salitadelibros.salita.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Categoria {
@@ -12,7 +13,6 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
     private String palabraCategoria;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "categoria",cascade = CascadeType.ALL)
@@ -33,7 +33,11 @@ public class Categoria {
         return palabraCategoria;
     }
 
-    public Set<LibroCategoria> getLibros() {
+    public void setPalabraCategoria(String palabraCategoria) {
+        this.palabraCategoria = palabraCategoria;
+    }
+
+    public Set<LibroCategoria> getLibroCategoria() {
         return libros;
     }
 
@@ -42,6 +46,11 @@ public class Categoria {
     public void addLibroCategoria(LibroCategoria libroCategoria){
         libroCategoria.setCategoria(this);
         libros.add(libroCategoria);
+    }
+
+    public List<Libro> getLibros(){
+        return libros.stream().map(libroCategoria -> libroCategoria.getLibro())
+                .collect(Collectors.toList());
     }
 
 }

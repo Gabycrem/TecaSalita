@@ -1,5 +1,6 @@
 package com.salitadelibros.salita.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.util.MultiValueMap;
 
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Libro {
@@ -85,15 +87,15 @@ public class Libro {
         return editorial;
     }
 
-    public Set<LibroCategoria> getCategorias() {
+    public Set<LibroCategoria> getLibroCategorias() {
         return categorias;
     }
 
-    public Set<LibroIlustrador> getIlustradores() {
+    public Set<LibroIlustrador> getLibroIlustradores() {
         return ilustradores;
     }
 
-    public Set<LibroAutor> getAutores() {
+    public Set<LibroAutor> getLibroAutores() {
         return autores;
     }
 
@@ -131,6 +133,19 @@ public class Libro {
     public void addLibroCategoria(LibroCategoria libroCategoria){
         libroCategoria.setLibro(this);
         categorias.add(libroCategoria);
+    }
+    @JsonIgnore
+    public List<Categoria> getCategorias(){
+        return categorias.stream()
+                .map(libroCategoria -> libroCategoria.getCategoria())
+                .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
+    public List<Autor> getAutores(){
+        return autores.stream()
+                .map(libroAutor -> libroAutor.getAutor())
+                .collect(Collectors.toList());
     }
 
     /*public void addEditorial(Editorial editorial){

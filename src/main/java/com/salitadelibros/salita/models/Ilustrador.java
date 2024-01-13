@@ -4,7 +4,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Entity
 public class Ilustrador {
     @Id
@@ -28,29 +31,24 @@ public class Ilustrador {
         this.apellidoIlustrador = apellidoIlustrador;
     }
 
-    //getters
+    //getters //setters
     public Long getId() { return id; }
     public String getNombreIlustrador() {
         return nombreIlustrador;
+    }
+    public void setNombreIlustrador(String nombreIlustrador) {
+        this.nombreIlustrador = nombreIlustrador;
     }
 
     public String getApellidoIlustrador() {
         return apellidoIlustrador;
     }
 
-    public Set<LibroIlustrador> getLibros() {
-        return libros;
-    }
-
-
-    //setters
-
-    public void setNombreIlustrador(String nombreIlustrador) {
-        this.nombreIlustrador = nombreIlustrador;
-    }
-
     public void setApellidoIlustrador(String apellidoIlustrador) {
         this.apellidoIlustrador = apellidoIlustrador;
+    }
+    public Set<LibroIlustrador> getLibroIlustrador() {
+        return libros;
     }
 
 
@@ -59,6 +57,11 @@ public class Ilustrador {
     public void addLibroIlustrador (LibroIlustrador libroIlustrador) {
         libroIlustrador.setIlustrador(this);
         libros.add(libroIlustrador);
+    }
+
+    public List<Libro> getLibros(){
+        return libros.stream().map(libroIlustrador -> libroIlustrador.getLibro())
+                .collect(Collectors.toList());
     }
 
 

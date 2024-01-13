@@ -34,6 +34,9 @@ public class Editorial {
     public String getNombreEditorial() {
         return nombreEditorial;
     }
+    public void setNombreEditorial(String nombreEditorial) {
+        this.nombreEditorial = nombreEditorial;
+    }
 
     public Set<Libro> getLibros() {
         return libros;
@@ -41,9 +44,7 @@ public class Editorial {
 
 // setters
 
-    public void setNombreEditorial(String nombreEditorial) {
-        this.nombreEditorial = nombreEditorial;
-    }
+
 
     public void addLibro(Libro libro) {
         libro.setEditorial(this); // agrego libro al Set<libro>

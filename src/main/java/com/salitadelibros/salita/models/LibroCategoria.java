@@ -12,19 +12,21 @@ public class LibroCategoria {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "libro_id")
     private Libro libro;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
 
     //Constructores
     public LibroCategoria() {
     }
-    public LibroCategoria(Libro libro, Categoria categoria) {
+    /*public LibroCategoria(Libro libro, Categoria categoria) {
         this.libro = libro;
         this.categoria= categoria;
-    }
+    }*/
     //getters
 
 
